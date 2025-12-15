@@ -1,0 +1,87 @@
+/* src/index.css */
+@import "tailwindcss";
+
+/* 1. Define your theme variables */
+@theme {
+  /* --- Custom Colors --- */
+  --color-primary: #f9f506;
+  --color-background-light: #f8f8f5;
+  --color-background-dark: #23220f;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #2d2c15;
+  --color-text-main: #181811;
+  --color-text-sub: #8c8b5f;
+
+  /* --- Font Family --- */
+  --font-display: "Spline Sans", sans-serif;
+
+  /* --- Border Radius --- */
+  --radius: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  /* --- Keyframes --- */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* --- Animation Utilities --- */
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-fade-in-up-delay-1: fadeInUp 0.8s ease-out 0.2s forwards;
+  --animate-fade-in-up-delay-2: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+/* 2. Define CSS custom properties OUTSIDE of @theme block */
+:root {
+  --color-background-light: #f8f8f5;
+  --color-background-dark: #23220f;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #2d2c15;
+  --color-text-main: #181811;
+  --color-text-sub: #8c8b5f;
+}
+
+/* 3. Define dark mode CSS variables */
+.dark {
+  --color-background-light: #23220f;
+  --color-surface-light: #2d2c15;
+  --color-text-main: #ffffff;
+}
+
+/* 4. Create custom utility classes for your colors */
+@layer utilities {
+  .bg-background-light {
+    background-color: var(--color-background-light);
+  }
+
+  .bg-surface-light {
+    background-color: var(--color-surface-light);
+  }
+
+  .text-text-main {
+    color: var(--color-text-main);
+  }
+
+  .text-text-sub {
+    color: var(--color-text-sub);
+  }
+
+  /* Add more utilities as needed */
+}
+
+/* 5. Dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 6. Base styles that use your custom properties */
+body {
+  background-color: var(--color-background-light);
+  color: var(--color-text-main);
+  font-family: var(--font-display);
+}
